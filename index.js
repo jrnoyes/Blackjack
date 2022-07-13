@@ -47,7 +47,8 @@ function shuffleDeck() {
 
 let playerHand = 0
 let house = 0
-
+let dealerAce = 0
+let playerAce = 0
 //draw cards, need to give cards that are not displayed a value
 
 let hiddenCards
@@ -59,7 +60,9 @@ let hiddenCards
 
 function startGame() {
     hiddenCards = cardDeck.pop()
-    house += cardValue(hiddenCards) 
+    house += cardValue(hiddenCards)
+    dealerAce += aceCount(hiddenCards) 
+    
     
 
     //for (var i = 1; i<=1; i++) {
@@ -78,6 +81,7 @@ function startGame() {
         let card = cardDeck.pop()
         cardImg.src = "./assets/" + card + ".png"
         house += cardValue(card)
+        dealerAce += aceCount(card)
         document.getElementById('dealer-cards').append(cardImg)
         console.log(card)
         console.log(house)
@@ -88,49 +92,58 @@ function startGame() {
         let card = cardDeck.pop()
         cardImg.src = "./assets/" + card + ".png"
         playerHand += cardValue(card)
+        playerAce += aceCount(card)
         document.getElementById('player-cards').append(cardImg)
 
     }
     document.getElementById('hit').addEventListener("click", hit)
     document.getElementById('stay').addEventListener("click", stay)
     document.getElementById('player-value').innerText = playerHand
-    document.getElementById('submit').addEventListener("click", submitBtn)
+    
+    
    
 }
 
-function submitBtn() {
-    var text = ""
-    var inputs = document.getElementById('bet')
-    for(var i = 0; i < inputs.length; i++){
-        text += inputs[i].value
+function bet (){
+   
+    
+
     }
-    var p = document.createElement('p')
-    var node = document.createTextNode(text)
-    p.appendChild(p)
-    document.getElementById()
-   
 
-}
+
+
 
 //make strings numbers, give values to A,J,K,Q
 function cardValue(card) {
     let number = card.split("-")
     let value = number[0]
-    if (value) {
+    
         if (value == "A") {
             return 11;
-        }
-        else if (value == "K" || value == "Q" || value == "J") {
-            return 10;
-        }
-        return parseInt(value)   
+        } else if ( value == "K" || value == "Q" || value == "J"){
+            return 10;}
+      return parseInt(value)        
     }
+     
+
+function aceCount(card) {
+
+    if (card[0] == 'A') {
+        return 1
+    } else {
+        return 0     
+    }
+
 }
 
+function changeAce(playerHand, playerAce) {
+    while (playerHand > 21 && playerAce > 0) {
+        playerHand -= 10
+        playerAce -= 1
+    }
+    return playerHand
+}
 
-
-
-var hitAction = true
 
 function hit() {
  if (playerHand < 21) {
@@ -138,7 +151,6 @@ function hit() {
     let card = cardDeck.pop()
     cardImg.src = "./assets/" + card + ".png"
     playerHand += cardValue(card)
-    checkAce()
     document.getElementById('player-cards').append(cardImg) 
     document.getElementById('player-value').innerText = playerHand
     } 
@@ -150,7 +162,8 @@ var resultMessage = " "
 
 function stay() {
 
-
+     house = changeAce(house, dealerAce)
+     playerHand = changeAce(playerHand, playerAce)
 
    document.getElementById("hidden-cards").src = '/assets/' + hiddenCards + '.png'
    document.getElementById('dealer-value').innerText = house
@@ -176,20 +189,6 @@ function stay() {
         resultMessage = "You Lose"
    }
    
-}
-
-let bet;
-let betInput
-let money
-let moneyDisplay
-
-function betting(){
-
-moneyDisplay = document.getElementById("money")
-money = 100
-moneyDisplay.innerHTML = "$" + money;
-betInput = document.getElementById("bet")
-betInput.value = 10;
 }
 
 
