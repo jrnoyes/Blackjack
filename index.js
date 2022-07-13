@@ -104,11 +104,11 @@ function startGame() {
    
 }
 
-function bet (){
+//function bet (){
    
-    
 
-    }
+
+ //   }
 
 
 
@@ -186,7 +186,7 @@ function stay() {
         resultMessage = "You Win!!"
    }
    else if(playerHand < house) {
-        resultMessage = "You Lose"
+        resultMessage = "You Lose :("
    }
    
 }
