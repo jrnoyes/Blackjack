@@ -1,0 +1,77 @@
+body {
+  background-color: green;
+}
+
+h1 {
+  color: rgb(255, 0, 225);
+  text-align: center;
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 40px;
+  color: yellow;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+img {
+  padding: 2px;
+  margin-top: 10px;
+}
+
+p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+input {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+}
+
+#dealer-score {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+}
+
+#dealer-cards {
+  position: absolute;
+  left: 15%;
+  top: 30%;
+}
+
+#player-cards {
+  position: absolute;
+  right: 15%;
+  top: 30%;
+}
+
+#player-score {
+  position: absolute;
+  right: 20%;
+  top: 20%;
+}
+
+#buttons {
+  text-align: center;
+  position: relative;
+  top: 400px;
+}
+
+#player-bet {
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
